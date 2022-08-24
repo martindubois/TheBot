@@ -1,0 +1,65 @@
+
+/*
+Author    KMS - Martin Dubois, P. Eng.
+Copyright (C) 2022 KMS
+License   http://www.apache.org/licenses/LICENSE-2.0
+Product   TheBot
+File      front-end/src/App.css
+*/
+
+a:link
+{
+    color: white;
+}
+
+a:visited
+{
+    color: darkgray;
+}
+
+body
+{
+    background-color: #005c87; /* KMS blue : RGB 0 92 135 = 00 5c 87 */
+}
+
+div
+{
+    background-color: black;
+    color           : white;
+}
+
+div.Main
+{
+    display   : flow-root;
+    min-height: 94vh;
+}
+
+div.Section
+{
+    border-color : #83c548; /* KMS green : RGB 131 197 75 = 83 c5 48 */
+    border-radius: 20px;
+    border-style : solid;
+    clear        : right;
+    float        : left;
+    margin       : 10px;
+    padding      : 10px;
+    width        : 400px;
+}
+
+footer
+{
+    background-color: #005c87;
+    font-size       : large;
+}
+
+nav
+{
+    background-color: #005c87;
+    font-size       : x-large;
+}
+
+td.Nav
+{
+    text-align: center;
+    width     : 100px;
+}
