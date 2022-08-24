@@ -1,0 +1,30 @@
+
+# Author    KMS - Martin Dubois, P. Eng.
+# Copyright (C) 2022 KMS
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Product   TheBot
+# File      front-end/.gitignore
+
+# ===== React ===============================================================
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
