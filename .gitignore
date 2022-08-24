@@ -1,0 +1,14 @@
+
+# Author    KMS - Martin Dubois, P. Eng.
+# Copyright (C) 2022
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Product   TheBot
+# File      .gitignore
+
+/Import/
+
+# ===== VisualStudio ========================================================
+
+/.vs/
+
+Debug/
