@@ -3,9 +3,9 @@
 // Copyright (C) 2022 KMS
 // License   http://www.apache.org/licenses/LICENSE-2.0
 // Product   TheBot
-// Fichier   Mecanic/LabJackU3-LV.scad
+// Fichier   Mecanic/LabJackU3.scad
 
-// Use to mound the LabJack U3-LV inside the box.
+// Use to mound the LabJack U3 inside the box.
 
 use <C:\_VC\Base3D\Metric\M3.scad>
 

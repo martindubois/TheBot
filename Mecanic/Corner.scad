@@ -17,16 +17,25 @@ module Corner_4()
 {
     difference()
     {
-        translate( [ - SIZE_X / 2, 0, 0 ] )
-            cube( [ SIZE_X, SIZE_Y, SIZE_X ] );
+        union()
+        {
+            translate( [ - SIZE_X / 2, 0, 0 ] )
+                cube( [ SIZE_X, SIZE_Y, SIZE_X ] );
+
+            for ( z = [ 0, SIZE_X - CORNER_X ] )
+            {
+                for ( x = [ - SIZE_X / 2, SIZE_X / 2 - CORNER_X ] )
+                {
+                    translate( [ x, SIZE_Y, z ] )
+                        cube( [ CORNER_X, CORNER_Y, CORNER_X ] );
+                }
+            }
+        }
             
         for ( z = [ 5, 19 ] )
         {
             for ( x = [ - 7, 7 ] )
-            {
-                translate( [ x, - EPS, z ] )
-                    M3_Thread_Y( 2 * EPS + SIZE_Y ); 
-            }
+                Hole( x, z );
         }
     }
 }
@@ -35,14 +44,20 @@ module Corner_2()
 {
     difference()
     {
-        translate( [ - SIZE_X / 2, 0, 0 ] )
-            cube( [ SIZE_X, SIZE_Y, SIZE_X / 2 ] );
+        union()
+        {
+            translate( [ - SIZE_X / 2, 0, 0 ] )
+                cube( [ SIZE_X, SIZE_Y, SIZE_X / 2 ] );
+
+            for ( x = [ - SIZE_X / 2, SIZE_X / 2 - CORNER_X ] )
+            {
+                translate( [ x, SIZE_Y, 0 ] )
+                    cube( [ CORNER_X, CORNER_Y, CORNER_X ] );
+            }
+        }
 
         for ( x = [ - 7, 7 ] )
-        {
-            translate( [ x, - EPS, 5 ] )
-                M3_Thread_Y( 2 * EPS + SIZE_Y ); 
-        }
+            Hole( x, 5 );
     }
 }
 
@@ -50,16 +65,30 @@ module Corder_1()
 {
     difference()
     {
-        translate( [ - SIZE_X / 2, 0, 0 ] )
-            cube( [ SIZE_X / 2, SIZE_Y, SIZE_X / 2 ] );
+        union()
+        {
+            translate( [ - SIZE_X / 2, 0, 0 ] )
+                cube( [ SIZE_X / 2, SIZE_Y, SIZE_X / 2 ] );
 
-        translate( [ - 7, - EPS, 5 ] )
-            M3_Thread_Y( 2 * EPS + SIZE_Y ); 
+            translate( [ - SIZE_X / 2, SIZE_Y, 0 ] )
+                cube( [ CORNER_X, CORNER_Y, CORNER_X ] );
+        }
+
+        Hole( - 7, 5 );
     }
 }
 
 // Private
 // //////////////////////////////////////////////////////////////////////////
+
+module Hole( aX, aZ )
+{
+    translate( [ aX, - EPS, aZ ] )
+        M3_Thread_Y( 2 * EPS + SIZE_Y + CORNER_Y );
+}
+
+CORNER_X = 5;
+CORNER_Y = 1;
 
 DIST = 14;
 

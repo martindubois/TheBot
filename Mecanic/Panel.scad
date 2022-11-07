@@ -7,18 +7,20 @@
 
 use <C:\_VC\Base3D\Metric\M3.scad>
 
+Panel_Medium();
+
 function Panel_SizeZ() = SIZE_Z;
 
-module Panel_Large() { Panel( SIZE_LARGE_X, 1 ); }
+module Panel_Large() { Panel( SIZE_LARGE_X ); }
 
-module Panel_Medium() { Panel( SIZE_MEDIUM_X, 1 ); }
+module Panel_Medium() { Panel( SIZE_MEDIUM_X ); }
 
-module Panel_Small() { Panel( SIZE_SMALL_X, 2 ); }
+module Panel_Small() { Panel( SIZE_SMALL_X ); }
 
 // Private
 // //////////////////////////////////////////////////////////////////////////
 
-module Panel( aSizeX, aCountZ )
+module Panel( aSizeX )
 {
     difference()
     {
@@ -28,7 +30,7 @@ module Panel( aSizeX, aCountZ )
                 cube( [ aSizeX, SIZE_Y, SIZE_Z ] );
 
             translate( [ - aSizeX / 2 + BORDER_W, SIZE_Y, BORDER_W ] )
-                cube( [ aSizeX - 2 * BORDER_W, BORDER_Y, SIZE_Z - aCountZ * BORDER_W ] );
+                cube( [ aSizeX - 2 * BORDER_W, BORDER_Y, SIZE_Z - 2 * BORDER_W ] );
         }
 
         for ( x = [ - aSizeX / 2 + 2 * BORDER_W, aSizeX / 2 - 2 * BORDER_W ] )
@@ -42,11 +44,22 @@ module Panel( aSizeX, aCountZ )
                 }
             }
         }
+
+        for ( x = [ - aSizeX / 2 + BORDER_W - EPS, aSizeX / 2 - BORDER_W - CORNER ] )
+        {
+            for ( z = [ BORDER_W - EPS, SIZE_Z - BORDER_W - CORNER ] )
+            {
+                translate( [ x, SIZE_Y, z ] )
+                    cube( [ CORNER + EPS, BORDER_Y + EPS, CORNER + EPS ] );
+            }
+        }
     }
 }
 
 BORDER_W = 3;
 BORDER_Y = 2;
+
+CORNER = 3;
 
 EPS = 0.1;
 
