@@ -17,6 +17,8 @@ module Panel_Medium() { Panel( SIZE_MEDIUM_X ); }
 
 module Panel_Small() { Panel( SIZE_SMALL_X ); }
 
+module Panel_XSmall() { Panel( SIZE_X_SMALL_X ); }
+
 // Private
 // //////////////////////////////////////////////////////////////////////////
 
@@ -63,8 +65,9 @@ CORNER = 3;
 
 EPS = 0.1;
 
-SIZE_LARGE_X  = 170;
-SIZE_MEDIUM_X = 142;
-SIZE_SMALL_X  =  46;
-SIZE_Y        =   5;
-SIZE_Z        =  67;
+SIZE_LARGE_X   = 170;
+SIZE_MEDIUM_X  = 142;
+SIZE_SMALL_X   =  46;
+SIZE_X_SMALL_X =  41;
+SIZE_Y         =   5;
+SIZE_Z         =  66;
