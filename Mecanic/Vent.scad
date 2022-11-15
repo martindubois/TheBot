@@ -7,9 +7,9 @@
 
 use <Panel.scad>
 
-Panel();
+Vent_XSmall();
 
-module Panel()
+module Vent_Small()
 {
     difference()
     {
@@ -24,6 +24,27 @@ module Panel()
         }
 
         for ( x = [ - 14, 0, 14 ] )
+        {
+            for ( z = [ 15, 27, 39, 51 ] )
+            {
+                Hole( x, z );
+            }
+        }
+    }
+}
+
+module Vent_XSmall()
+{
+    difference()
+    {
+        Panel_XSmall();
+
+        for ( z = [ 9, 21, 33, 45, 57 ] )
+        {
+                Hole( 0, z );
+        }
+
+        for ( x = [ - 7, 7 ] )
         {
             for ( z = [ 15, 27, 39, 51 ] )
             {
