@@ -7,25 +7,16 @@
 
 include <C:\_VC\Base3D\Metric\M4.scad>
 
-use <Panel.scad>
+use <SlottedPanel.scad>
 
 Block();
-// Panel();
-
-module Panel()
-{
-    difference()
-    {
-        Panel_Small();
-
-        translate( [ - SPACE - TICK_S / 2, - EPS, SLOT_Z ] )
-            cube( [ 2 * SPACE + TICK_S, 2 * EPS + PANEL_SIZE_Y, SLOT_SIZE_Z + PANEL_BORDER_SIZE_Z + EPS ] );
-    }
-}
+SlottedPanel();
 
 module Block()
 {
-    color("Blue")
+    SlottedBlock();
+
+    color( "Blue" )
     {
         difference()
         {
@@ -56,15 +47,6 @@ module Block()
                     sphere( GAP_Y + WHEEL_SIZE_Y, $fn = 128 );
             }
         }
-
-        translate( [ - TICK_S / 2, 0, SLOT_Z + SPACE ] )
-            cube( [ TICK_S, 2 * SPACE + PANEL_SIZE_Y, SLOT_SIZE_Z - SPACE ] );
-
-        translate( [ - TICK_S / 2, 0, SLOT_Z + SPACE + SLOT_SIZE_Z - SPACE ] )
-            cube( [ TICK_S, 5, PANEL_BORDER_SIZE_Z ] );
-
-        translate( [ - TICK_L / 2, 2 * SPACE + PANEL_SIZE_Y, SLOT_Z + SPACE ] )
-            cube( [ TICK_L, TICK_S, SLOT_SIZE_Z - SPACE + PANEL_BORDER_SIZE_Z ] );
     }
 }
 
@@ -100,4 +82,3 @@ SPACE = 0.2;
 TICK_L = 10;
 
 TICK_S = 5;
-
