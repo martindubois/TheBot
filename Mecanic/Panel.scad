@@ -5,9 +5,10 @@
 // Product   TheBot
 // Fichier   Mecanic/Panel.scad
 
+use <C:\_VC\Base3D\Cylinder.scad>
 use <C:\_VC\Base3D\Metric\M3.scad>
 
-Panel_Medium();
+Panel_Small_Left();
 
 function Panel_SizeZ() = SIZE_Z;
 
@@ -16,6 +17,44 @@ module Panel_Large() { Panel( SIZE_LARGE_X ); }
 module Panel_Medium() { Panel( SIZE_MEDIUM_X ); }
 
 module Panel_Small() { Panel( SIZE_SMALL_X ); }
+
+module Panel_Small_Left()
+{
+    difference()
+    {
+        Panel_Small();
+
+        translate( [ - SIZE_SMALL_X / 2 - EPS, 0, SIZE_Z - 13 ] )
+        {
+            translate( [ 0, - EPS, 0 ] )
+                cube( [ EPS + LEFT_R, 2 * EPS + 7, 13 + EPS ] );
+
+            translate( [ 0, 5, 0 ] )
+                cube( [ EPS + LEFT_R + 3, EPS + 2, 13 + EPS ] );
+        }
+
+        translate( [ - SIZE_SMALL_X / 2, 0, SIZE_Z - 13 ] )
+        {
+            translate( [ 0, - EPS, 0 ] )
+                Cylinder_Y( 2 * EPS + 7, LEFT_R, 32 );
+
+            translate( [ 0, 5, 0 ] )
+                Cylinder_Y( 2 + EPS, LEFT_R + 3, 32 );
+        }
+
+        for ( x = [ - 7, 3 ] )
+        {
+            for ( z = [ SIZE_Z / 2 - 7, SIZE_Z / 2 + 3 ] )
+            {
+                translate( [ x, 3 - EPS, z ] )
+                    cube( [ 4, 2 * EPS + 4, 4 ] );
+            }
+        }
+
+        translate( [ - 7, - EPS, SIZE_Z / 2 - 7 ] )
+            cube( [ 14, EPS + 3, 14 ] );
+    }
+}
 
 module Panel_XSmall() { Panel( SIZE_X_SMALL_X ); }
 
@@ -64,6 +103,8 @@ BORDER_Y = 2;
 CORNER = 3;
 
 EPS = 0.1;
+
+LEFT_R = 10;
 
 SIZE_LARGE_X   = 170;
 SIZE_MEDIUM_X  = 142;
