@@ -7,11 +7,11 @@
 
 use <C:\_VC\Base3D\Metric\M3.scad>
 
-Corner_4();
+// Corner_4();
 
 translate( [ 30, 0, 0 ] ) Corner_2();
 
-translate( [ 60, 0, 0 ] ) Corder_1();
+// translate( [ 60, 0, 0 ] ) Corder_1();
 
 module Corner_4()
 {
@@ -34,7 +34,7 @@ module Corner_4()
             
         for ( z = [ 5, 19 ] )
         {
-            for ( x = [ - 7, 7 ] )
+            for ( x = [ - 7.5, 7.5 ] )
                 Hole( x, z );
         }
     }
@@ -56,7 +56,7 @@ module Corner_2()
             }
         }
 
-        for ( x = [ - 7, 7 ] )
+        for ( x = [ - 7.5, 7.5 ] )
             Hole( x, 5 );
     }
 }
@@ -74,7 +74,7 @@ module Corder_1()
                 cube( [ CORNER_X, CORNER_Y, CORNER_X ] );
         }
 
-        Hole( - 7, 5 );
+        Hole( - 7.5, 5 );
     }
 }
 
@@ -89,8 +89,6 @@ module Hole( aX, aZ )
 
 CORNER_X = 5;
 CORNER_Y = 1;
-
-DIST = 14;
 
 EPS = 0.1;
 
