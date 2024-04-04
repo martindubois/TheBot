@@ -8,7 +8,7 @@
 use <C:\_VC\Base3D\Cylinder.scad>
 use <C:\_VC\Base3D\Metric\M3.scad>
 
-Panel_Small_Left();
+Panel_Small_Left( true );
 
 function Panel_SizeZ() = SIZE_Z;
 
@@ -18,41 +18,35 @@ module Panel_Medium() { Panel( SIZE_MEDIUM_X ); }
 
 module Panel_Small() { Panel( SIZE_SMALL_X ); }
 
-module Panel_Small_Left()
+module Panel_Small_Left( aTWrapHoles )
 {
     difference()
     {
         Panel_Small();
 
-        translate( [ - SIZE_SMALL_X / 2 - EPS, 0, SIZE_Z - 13 ] )
+        translate( [ - SIZE_SMALL_X / 2, 0, 0 ] )
+            UpCorner();
+
+        if ( aTWrapHoles )
         {
-            translate( [ 0, - EPS, 0 ] )
-                cube( [ EPS + LEFT_R, 2 * EPS + 7, 13 + EPS ] );
-
-            translate( [ 0, 5, 0 ] )
-                cube( [ EPS + LEFT_R + 3, EPS + 2, 13 + EPS ] );
+            TWrapHoles();
         }
+    }
+}
 
-        translate( [ - SIZE_SMALL_X / 2, 0, SIZE_Z - 13 ] )
+module Panel_Small_Right( aTWrapHoles )
+{
+    difference()
+    {
+        Panel_Small();
+
+        translate( [ SIZE_SMALL_X / 2, 0, 0 ] )
+            UpCorner();
+
+        if ( aTWrapHoles )
         {
-            translate( [ 0, - EPS, 0 ] )
-                Cylinder_Y( 2 * EPS + 7, LEFT_R, 32 );
-
-            translate( [ 0, 5, 0 ] )
-                Cylinder_Y( 2 + EPS, LEFT_R + 3, 32 );
+            TWrapHoles();
         }
-
-        for ( x = [ - 7, 3 ] )
-        {
-            for ( z = [ SIZE_Z / 2 - 7, SIZE_Z / 2 + 3 ] )
-            {
-                translate( [ x, 3 - EPS, z ] )
-                    cube( [ 4, 2 * EPS + 4, 4 ] );
-            }
-        }
-
-        translate( [ - 7, - EPS, SIZE_Z / 2 - 7 ] )
-            cube( [ 14, EPS + 3, 14 ] );
     }
 }
 
@@ -97,6 +91,42 @@ module Panel( aSizeX )
     }
 }
 
+module TWrapHoles()
+{
+    for ( x = [ - 7, 3 ] )
+    {
+        for ( z = [ SIZE_Z / 2 - 7, SIZE_Z / 2 + 3 ] )
+        {
+            translate( [ x, 3 - EPS, z ] )
+                cube( [ 4, 2 * EPS + 4, 4 ] );
+        }
+    }
+
+    translate( [ - 7, - EPS, SIZE_Z / 2 - 7 ] )
+        cube( [ 14, EPS + 3, 14 ] );
+}
+
+module UpCorner()
+{
+    translate( [ 0, 0, SIZE_Z - 13 ] )
+    {
+        translate( [ - UP_R + EPS, 0, 0 ] )
+        {
+            translate( [ 0, - EPS, 0 ] )
+                cube( [ 2 * UP_R, 2 * EPS + 7, 13 + EPS ] );
+
+            translate( [ - 3, 5, 0 ] )
+                cube( [ 2 * ( UP_R + 3 ), EPS + 2, 13 + EPS ] );
+        }
+
+        translate( [ 0, - EPS, 0 ] )
+            Cylinder_Y( 2 * EPS + 7, UP_R, 32 );
+
+        translate( [ 0, 5, 0 ] )
+            Cylinder_Y( 2 + EPS, UP_R + 3, 32 );
+    }
+}
+
 BORDER_W = 3;
 BORDER_Y = 2;
 
@@ -104,7 +134,7 @@ CORNER = 3;
 
 EPS = 0.1;
 
-LEFT_R = 10;
+UP_R = 10;
 
 SIZE_LARGE_X   = 170;
 SIZE_MEDIUM_X  = 142;
